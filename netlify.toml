@@ -1,0 +1,21 @@
+[build]
+  publish = ".next"
+  command = "npm install --legacy-peer-deps && npm run build"
+
+[build.environment]
+  NODE_VERSION = "18.18.0"
+  NPM_FLAGS = "--legacy-peer-deps"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[context.production]
+  command = "npm ci --legacy-peer-deps && npm run build"
+
+[context.deploy-preview]
+  command = "npm install --legacy-peer-deps && npm run build"
+
+[context.branch-deploy]
+  command = "npm install --legacy-peer-deps && npm run build"

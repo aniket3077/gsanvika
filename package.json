@@ -109,6 +109,16 @@
     "tailwindcss": "^3.4.17",
     "typescript": "^5.8.3"
   },
+  "overrides": {
+    "react": "$react",
+    "react-dom": "$react-dom",
+    "@types/react": "$@types/react",
+    "@types/react-dom": "$@types/react-dom",
+    "react-day-picker": {
+      "react": "$react",
+      "react-dom": "$react-dom"
+    }
+  },
   "engines": {
     "node": ">=18.18.0",
     "npm": ">=9.0.0"
