@@ -4,6 +4,7 @@
 import type React from "react"
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
+import Link from "next/link"
 import Image from "next/image"
 import Navbar from "@/components/common/navbar"
 import Footer from "@/components/common/footer"
@@ -64,6 +65,7 @@ export default function CheckoutPage() {
   })
 
   const [isProcessing, setIsProcessing] = useState(false)
+  const [acceptedTerms, setAcceptedTerms] = useState(false)
 
   // Update form data when user is loaded
   useEffect(() => {
@@ -272,6 +274,13 @@ export default function CheckoutPage() {
       return
     }
 
+    // Validate terms acceptance
+    if (!acceptedTerms) {
+      alert("Please accept the Terms and Conditions to proceed")
+      setIsProcessing(false)
+      return
+    }
+
     if (formData.paymentMethod === "razorpay") {
       await handleRazorpayPayment()
     } else {
@@ -461,11 +470,43 @@ export default function CheckoutPage() {
                   </div>
                 </div>
 
+                {/* Terms and Conditions */}
+                <div className="bg-card rounded-lg p-6">
+                  <label className="flex items-start space-x-3 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={acceptedTerms}
+                      onChange={(e) => setAcceptedTerms(e.target.checked)}
+                      className="mt-1 h-4 w-4 text-gold-500 border-gray-300 rounded focus:ring-gold-500"
+                      required
+                    />
+                    <div className="text-sm text-muted-foreground leading-relaxed">
+                      I agree to the{" "}
+                      <Link 
+                        href="/terms" 
+                        target="_blank"
+                        className="text-gold-500 hover:text-gold-600 underline font-medium"
+                      >
+                        Terms and Conditions
+                      </Link>
+                      {" "}and{" "}
+                      <Link 
+                        href="/privacy" 
+                        target="_blank"
+                        className="text-gold-500 hover:text-gold-600 underline font-medium"
+                      >
+                        Privacy Policy
+                      </Link>
+                      . I understand that by placing this order, I am entering into a legally binding agreement with Global Saanvika.
+                    </div>
+                  </label>
+                </div>
+
                 <Button
                   type="submit"
                   className="w-full bg-gold-500 hover:bg-gold-600 text-black font-semibold"
                   size="lg"
-                  disabled={isProcessing}
+                  disabled={isProcessing || !acceptedTerms}
                 >
                   {isProcessing
                     ? "Processing..."

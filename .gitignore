@@ -31,9 +31,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# Local Netlify folder
-.netlify
-
 # IDE and editor files
 .vscode/
 .idea/

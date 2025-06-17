@@ -2,10 +2,6 @@
 
 A complete full-stack e-commerce solution built with modern web technologies. Features a responsive design, secure authentication, payment integration, and comprehensive admin dashboard.
 
-## 🚀 Live Demo
-
-**Production URL**: https://ecom2405.netlify.app
-
 ## ✨ Features
 
 ### Customer Features
@@ -35,7 +31,6 @@ A complete full-stack e-commerce solution built with modern web technologies. Fe
 - **Authentication**: Firebase Auth
 - **Storage**: Firebase Storage
 - **Payments**: Razorpay
-- **Deployment**: Netlify with Next.js Runtime
 - **State Management**: React Context API
 
 ## 🚀 Getting Started
@@ -59,7 +54,7 @@ npm install --legacy-peer-deps
 ```
 
 3. Set up environment variables:
-   - Copy `.env.example` to `.env.local`
+   - Copy `.env.example` to `.env`
    - Fill in your Firebase and Razorpay credentials
 
 4. Run the development server:
@@ -71,7 +66,7 @@ Open [http://localhost:3000](http://localhost:3000) to view the application.
 
 ## 🌍 Environment Variables
 
-Create a `.env.local` file in the root directory with the following variables:
+Create a `.env` file in the root directory with the following variables:
 
 ```env
 # Firebase Configuration
@@ -89,10 +84,10 @@ RAZORPAY_KEY_SECRET=your_razorpay_secret
 
 ## 🚀 Deployment
 
-This project is configured for deployment on Netlify with the Next.js Runtime:
+This project can be deployed on various platforms that support Next.js:
 
-1. Connect your GitHub repository to Netlify
-2. Set environment variables in Netlify dashboard
+1. Connect your GitHub repository to your hosting platform
+2. Set environment variables in your dashboard
 3. Deploy automatically on push to main branch
 
 **Build Command**: `npm run build`
@@ -150,7 +145,7 @@ Contains React custom hooks.
 
 1. Clone the repository
 2. Run `npm install` to install dependencies
-3. Create a `.env.local` file based on `.env.example`
+3. Create a `.env` file based on `.env.example`
 4. Run `npm run dev` to start the development server
 
 ## Build and Deployment

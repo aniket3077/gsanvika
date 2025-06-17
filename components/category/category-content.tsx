@@ -26,6 +26,11 @@ export default function CategoryContent({ allProducts, title, description }: Cat
   const [sortBy, setSortBy] = useState("")
   const [products, setProducts] = useState(allProducts)
 
+  // Update products when allProducts prop changes
+  useEffect(() => {
+    setProducts(allProducts)
+  }, [allProducts])
+
   useEffect(() => {
     let filteredProducts = [...allProducts]
 

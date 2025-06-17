@@ -260,7 +260,11 @@ export class ProductService {
     try {
       const db = await getFirestore()
       const productsRef = collection(db, this.COLLECTION_NAME)
-      const q = query(productsRef, where('category', '==', category))
+      const q = query(
+        productsRef, 
+        where('category', '==', category),
+        orderBy('createdAt', 'desc') // Order by creation date, newest first
+      )
       const querySnapshot = await getDocs(q)
       const products = querySnapshot.docs.map(doc => {
         const rawData = {
@@ -269,6 +273,7 @@ export class ProductService {
         }
         return this.serializeProduct(rawData)
       })
+      console.log(`Found ${products.length} products in category: ${category}`)
       return products
     } catch (error) {
       console.error('Error getting products by category:', error)

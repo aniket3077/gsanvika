@@ -6,10 +6,11 @@ const path = require('path');
 
 console.log('🔥 Starting Firebase deployment process...');
 
-// Copy Firebase environment variables
-if (fs.existsSync('.env.firebase')) {
-  fs.copyFileSync('.env.firebase', '.env.production');
-  console.log('✅ Firebase environment variables loaded');
+// Use main environment variables
+if (fs.existsSync('.env')) {
+  console.log('✅ Using environment variables from .env');
+} else {
+  console.log('⚠️ Warning: .env file not found');
 }
 
 try {

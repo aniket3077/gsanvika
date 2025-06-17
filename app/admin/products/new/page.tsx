@@ -137,20 +137,24 @@ export default function NewProductPage() {
         description: formData.description.trim(),
         category: formData.category,
         price: Number(formData.price),
-        originalPrice: Number(formData.mrp),
+        comparePrice: Number(formData.mrp),
         stockQuantity: Number(formData.stock),
         inStock: Number(formData.stock) > 0,
         imageUrl: images[0] || '',
         images,
-        tags: features.filter((f) => f.trim() !== ""),
+        features: features.filter((f) => f.trim() !== ""),
         specifications: specifications.reduce(
-          (acc, spec) => ({
-            ...acc,
-            [spec.key]: spec.value,
-          }),
+          (acc, spec) => {
+            if (spec.key.trim() && spec.value.trim()) {
+              return { ...acc, [spec.key.trim()]: spec.value.trim() }
+            }
+            return acc
+          },
           {} as Record<string, string>
         ),
-        featured: false
+        featured: true, // Make new products featured by default
+        averageRating: 0,
+        totalReviews: 0
       }
 
       // Save product

@@ -46,12 +46,11 @@ async function checkFileExists(filePath) {
 async function setupEnvironment() {
   log('\n🚀 Global Saanvika E-commerce Setup', 'cyan');
   log('=====================================\n', 'cyan');
-
-  // Check if .env.local exists
-  const envExists = await checkFileExists('.env.local');
+  // Check if .env exists
+  const envExists = await checkFileExists('.env');
   
   if (envExists) {
-    log('✅ .env.local file already exists', 'green');
+    log('✅ .env file already exists', 'green');
     const overwrite = await question('Do you want to reconfigure? (y/N): ');
     if (overwrite.toLowerCase() !== 'y') {
       log('Setup cancelled.', 'yellow');
@@ -82,8 +81,7 @@ async function setupEnvironment() {
     keyId: await question('Razorpay Key ID: '),
     keySecret: await question('Razorpay Key Secret: ')
   };
-
-  // Generate .env.local content
+  // Generate .env content
   const envContent = `# Firebase Configuration
 NEXT_PUBLIC_FIREBASE_API_KEY=${firebaseConfig.apiKey}
 NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=${firebaseConfig.authDomain}
@@ -98,12 +96,12 @@ RAZORPAY_KEY_SECRET=${razorpayConfig.keySecret}
 NEXT_PUBLIC_RAZORPAY_KEY_ID=${razorpayConfig.keyId}
 `;
 
-  // Write .env.local file
+  // Write .env file
   try {
-    await fs.promises.writeFile('.env.local', envContent);
-    log('\n✅ .env.local file created successfully!', 'green');
+    await fs.promises.writeFile('.env', envContent);
+    log('\n✅ .env file created successfully!', 'green');
   } catch (error) {
-    log('\n❌ Error creating .env.local file:', 'red');
+    log('\n❌ Error creating .env file:', 'red');
     log(error.message, 'red');
     rl.close();
     return;
@@ -123,14 +121,13 @@ NEXT_PUBLIC_RAZORPAY_KEY_ID=${razorpayConfig.keyId}
 async function validateSetup() {
   log('\n🔍 Validating Setup...', 'cyan');
   
-  const checks = [
-    {
+  const checks = [    {
       name: 'package.json exists',
       check: () => checkFileExists('package.json')
     },
     {
-      name: '.env.local exists',
-      check: () => checkFileExists('.env.local')
+      name: '.env exists',
+      check: () => checkFileExists('.env')
     },
     {
       name: 'node_modules exists',
@@ -146,10 +143,9 @@ async function validateSetup() {
     const result = await check.check();
     log(`${result ? '✅' : '❌'} ${check.name}`, result ? 'green' : 'red');
   }
-
   // Check environment variables
-  if (await checkFileExists('.env.local')) {
-    const envContent = await fs.promises.readFile('.env.local', 'utf8');
+  if (await checkFileExists('.env')) {
+    const envContent = await fs.promises.readFile('.env', 'utf8');
     const requiredVars = [
       'NEXT_PUBLIC_FIREBASE_API_KEY',
       'NEXT_PUBLIC_FIREBASE_PROJECT_ID',

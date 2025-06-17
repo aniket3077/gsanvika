@@ -6,6 +6,9 @@ import { ProductService } from "@/lib/firebase/products"
 import { Suspense } from "react"
 import { preloadFirebase } from "@/lib/firebase"
 
+// Enable revalidation to ensure fresh product data
+export const revalidate = 60 // Revalidate every 60 seconds
+
 // Generate static params for static export
 export async function generateStaticParams() {
   // Return empty array for static export - pages will be generated on demand

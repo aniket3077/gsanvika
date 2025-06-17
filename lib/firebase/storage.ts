@@ -167,12 +167,29 @@ export class FirebaseStorageService {
   // Delete an image
   static async deleteImage(url: string): Promise<void> {
     try {
-      const imageRef = ref(this.storage, url)
-      await deleteObject(imageRef)
-      console.log("Image deleted successfully")
-    } catch (error) {
-      console.error("Error deleting image:", error)
-      throw new Error("Failed to delete image")
+      // Extract the path from the download URL
+      let imagePath: string;
+      
+      if (url.includes('firebasestorage.googleapis.com')) {
+        // This is a download URL, extract the path
+        const urlObj = new URL(url);
+        const pathMatch = urlObj.pathname.match(/\/o\/(.+)\?/);
+        if (pathMatch) {
+          imagePath = decodeURIComponent(pathMatch[1]);
+        } else {
+          throw new Error('Could not extract path from URL');
+        }
+      } else {
+        // This is already a path
+        imagePath = url;
+      }
+      
+      const imageRef = ref(this.storage, imagePath);
+      await deleteObject(imageRef);
+      console.log("Image deleted successfully:", imagePath);
+    } catch (error: any) {
+      console.error("Error deleting image:", error);
+      throw new Error(`Failed to delete image: ${error.message}`);
     }
   }
 
