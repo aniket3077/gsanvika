@@ -307,7 +307,7 @@ export default function NewProductPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <Label htmlFor="status">Product Status</Label>
-                <Select value={formData.status} onValueChange={(value) => setFormData(prev => ({ ...prev, status: value as "active" | "inactive" }))}>
+                <Select value={formData.status} onValueChange={(value: string) => setFormData(prev => ({ ...prev, status: value as "active" | "inactive" }))}>
                   <SelectTrigger>
                     <SelectValue placeholder="Select status" />
                   </SelectTrigger>
