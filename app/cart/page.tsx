@@ -38,7 +38,7 @@ export default function CartPage() {
               <p className="text-muted-foreground mb-8">
                 Discover our beautiful collections and add some items to your cart.
               </p>
-              <Link href="/category/jewelry">
+              <Link href="/collections">
                 <Button className="bg-gold-500 hover:bg-gold-600 text-black font-semibold">Continue Shopping</Button>
               </Link>
             </div>
@@ -147,7 +147,7 @@ export default function CartPage() {
                     </Button>
                   </Link>
 
-                  <Link href="/category/jewelry">
+                  <Link href="/collections">
                     <Button variant="outline" className="w-full" size="lg">
                       Continue Shopping
                     </Button>

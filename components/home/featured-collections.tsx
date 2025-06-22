@@ -88,7 +88,7 @@ export default function FeaturedCollections() {
 
         {/* CTA */}
         <div className="text-center">
-          <Link href="/category/jewelry">
+          <Link href="/collections">
             <Button size="lg" className="bg-gold-500 hover:bg-gold-600 text-black font-semibold px-8 py-3">
               View All Collections
             </Button>

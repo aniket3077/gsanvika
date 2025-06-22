@@ -36,11 +36,9 @@ export default function HeroSection() {
         <p className="text-lg sm:text-xl text-gray-200 mb-8 max-w-2xl mx-auto leading-relaxed animate-fade-in">
           Discover our curated collection of premium jewelry, elegant photo frames, and stunning resin art pieces that
           celebrate timeless beauty and sophistication.
-        </p>
-
-        {/* CTA Buttons */}
+        </p>        {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in">
-          <Link href="/category/jewelry">
+          <Link href="/collections">
             <Button
               size="lg"
               className="bg-gold-500 hover:bg-gold-600 text-black font-semibold px-8 py-3 text-lg group"
