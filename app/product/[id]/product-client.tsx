@@ -10,6 +10,7 @@ import { Product } from '@/types/product'
 import { getFirestore } from '@/lib/firebase'
 import { ProductImages } from '@/components/product/product-images'
 import { ReviewsList } from '@/components/product/reviews-list'
+import { ProductSuggestions } from '@/components/product/product-suggestions'
 import { cn } from '@/lib/utils/common'
 import { ProductService } from '@/lib/firebase/products'
 import { toast } from 'sonner'
@@ -482,6 +483,11 @@ export default function ProductClient({ id, initialData }: ProductClientProps) {
         {/* Reviews Section */}
         <div className="mt-16">
           <ReviewsList productId={id} />
+        </div>
+
+        {/* Product Suggestions */}
+        <div className="mt-16">
+          <ProductSuggestions currentProduct={product} />
         </div>
       </div>
     </div>

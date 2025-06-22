@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Import suggestion styles */
+@import '../styles/suggestions.css';
+
 @layer base {
   :root {
     --gold-50: #fefdf8;
