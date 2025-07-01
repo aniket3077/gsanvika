@@ -82,6 +82,31 @@ export default function ProductClientNew({ id, initialData }: ProductClientProps
     }
   }
 
+  const handleBuyNow = () => {
+    if (!product) return
+    
+    try {
+      // First add to cart
+      dispatch({
+        type: 'ADD_ITEM',
+        payload: {
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          image: product.imageUrl,
+          category: product.category,
+          quantity
+        }
+      })
+      
+      // Then redirect to checkout
+      router.push('/checkout')
+      toast.success('Redirecting to checkout...')
+    } catch (error) {
+      toast.error('Failed to proceed to checkout. Please try again.')
+    }
+  }
+
   // Share functionality
   const handleShare = async () => {
     if (!product) return
@@ -347,35 +372,46 @@ export default function ProductClientNew({ id, initialData }: ProductClientProps
             <div className="py-6">
               
               <div className="space-y-4">
-                <div className="flex gap-4">
+                <div className="grid grid-cols-2 gap-3">
                   <Button
-                    className="flex-1 h-12 bg-gradient-to-r from-[#C4A484] to-[#B39479] hover:from-[#B39479] hover:to-[#A08568] text-black font-medium text-base rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="h-12 bg-gradient-to-r from-[#C4A484] to-[#B39479] hover:from-[#B39479] hover:to-[#A08568] text-black font-medium text-base rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
                     onClick={handleAddToCart}
                     disabled={!product.inStock}
                   >
                     {added ? (
                       <>
-                        <Check className="h-5 w-5 mr-2" />
-                        <span>Added to Cart</span>
+                        <Check className="h-4 w-4 mr-2" />
+                        <span>Added</span>
                       </>
                     ) : (
                       <>
-                        <ShoppingCart className="h-5 w-5 mr-2" />
+                        <ShoppingCart className="h-4 w-4 mr-2" />
                         <span>Add to Cart</span>
                       </>
                     )}
                   </Button>
+                  
+                  <Button
+                    className="h-12 bg-gradient-to-r from-orange-600 to-red-600 hover:from-red-600 hover:to-orange-700 text-white font-medium text-base rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                    onClick={handleBuyNow}
+                    disabled={!product.inStock}
+                  >
+                    <span>Buy Now</span>
+                  </Button>
+                </div>
+                
+                <div className="flex justify-center">
                   <Button
                     variant="outline"
                     size="icon"
                     className={cn(
-                      "h-12 w-12 border border-gray-600 hover:bg-gray-700 rounded-lg",
+                      "h-10 w-10 border border-gray-600 hover:bg-gray-700 rounded-lg",
                       isWishlist && "bg-gray-700 border-gray-500"
                     )}
                     onClick={() => setIsWishlist(!isWishlist)}
                   >
                     <Heart className={cn(
-                      "h-5 w-5",
+                      "h-4 w-4",
                       isWishlist ? "fill-red-500 text-red-500" : "text-gray-400"
                     )} />
                   </Button>
