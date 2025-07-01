@@ -139,6 +139,19 @@ export default function ProductClientNew({ id, initialData }: ProductClientProps
       })
   }
 
+  const handleToggleFavorite = () => {
+    const newWishlistState = !isWishlist
+    setIsWishlist(newWishlistState)
+    
+    if (newWishlistState) {
+      toast.success(`${product?.name} added to favorites!`, {
+        description: 'You can find it in your wishlist'
+      })
+    } else {
+      toast.success(`${product?.name} removed from favorites`)
+    }
+  }
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-gray-950 via-black to-gray-950 text-white relative overflow-hidden">
@@ -236,29 +249,51 @@ export default function ProductClientNew({ id, initialData }: ProductClientProps
                   </div>
                 </div>
                 
-                {/* Share Button */}
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="text-gray-400 hover:text-white h-10 w-10"
-                      title="Share this product"
-                    >
-                      <Send className="h-5 w-5" />
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end" className="bg-gray-800 border-gray-600">
-                    <DropdownMenuItem onClick={handleShare} className="text-white hover:bg-gray-700">
-                      <Send className="mr-2 h-4 w-4" />
-                      Share Product
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onClick={handleCopyLink} className="text-white hover:bg-gray-700">
-                      <Tag className="mr-2 h-4 w-4" />
-                      Copy Link
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
+                {/* Action Buttons - Share & Favorite */}
+                <div className="flex items-center gap-2">
+                  {/* Favorite Button */}
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className={cn(
+                      "h-10 w-10 transition-all duration-200",
+                      isWishlist 
+                        ? "text-red-500 hover:text-red-400 bg-red-500/10 hover:bg-red-500/20" 
+                        : "text-gray-400 hover:text-white hover:bg-gray-700/50"
+                    )}
+                    onClick={handleToggleFavorite}
+                    title={isWishlist ? "Remove from favorites" : "Add to favorites"}
+                  >
+                    <Heart className={cn(
+                      "h-5 w-5 transition-all duration-200",
+                      isWishlist ? "fill-red-500 text-red-500 scale-110" : "text-gray-400"
+                    )} />
+                  </Button>
+
+                  {/* Share Button */}
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="text-gray-400 hover:text-white h-10 w-10 hover:bg-gray-700/50"
+                        title="Share this product"
+                      >
+                        <Send className="h-5 w-5" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" className="bg-gray-800 border-gray-600">
+                      <DropdownMenuItem onClick={handleShare} className="text-white hover:bg-gray-700">
+                        <Send className="mr-2 h-4 w-4" />
+                        Share Product
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={handleCopyLink} className="text-white hover:bg-gray-700">
+                        <Tag className="mr-2 h-4 w-4" />
+                        Copy Link
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </div>
               </div>
 
               {/* Rating Section */}
@@ -397,23 +432,6 @@ export default function ProductClientNew({ id, initialData }: ProductClientProps
                     disabled={!product.inStock}
                   >
                     <span>Buy Now</span>
-                  </Button>
-                </div>
-                
-                <div className="flex justify-center">
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    className={cn(
-                      "h-10 w-10 border border-gray-600 hover:bg-gray-700 rounded-lg",
-                      isWishlist && "bg-gray-700 border-gray-500"
-                    )}
-                    onClick={() => setIsWishlist(!isWishlist)}
-                  >
-                    <Heart className={cn(
-                      "h-4 w-4",
-                      isWishlist ? "fill-red-500 text-red-500" : "text-gray-400"
-                    )} />
                   </Button>
                 </div>
                 
