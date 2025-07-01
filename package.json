@@ -24,7 +24,11 @@
     "deploy": "npm run build",
     "deploy:auto": "node deploy.js",
     "perf": "node clean-cache.js && npm run dev",
-    "seed": "ts-node scripts/seed.ts"
+    "seed": "ts-node scripts/seed.ts",
+    "reset-admin-data": "ts-node scripts/reset-admin-data.ts",
+    "reset-products": "ts-node scripts/reset-admin-data.ts products",
+    "reset-orders": "ts-node scripts/reset-admin-data.ts orders",
+    "reset-customers": "ts-node scripts/reset-admin-data.ts customers"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",

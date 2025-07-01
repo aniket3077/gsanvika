@@ -4,7 +4,7 @@ import React from "react"
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Package, Users, ShoppingCart, TrendingUp, Plus, BarChart3, Activity, Clock, CheckCircle, AlertCircle, RefreshCw } from "lucide-react"
+import { Package, Users, ShoppingCart, TrendingUp, Plus, BarChart3, Activity, Clock, CheckCircle, AlertCircle, RefreshCw, Settings } from "lucide-react"
 import { ProtectedRoute } from "@/components/auth/protected-route"
 import { DashboardService, type DashboardStats, type RecentActivity } from "@/lib/services/dashboard-service"
 
@@ -552,6 +552,33 @@ function AdminDashboardContent() {
                         </p>
                         <div className="mt-4 flex items-center text-sm text-teal-600 group-hover:text-teal-700">
                           <span className="font-medium">Extract Data</span>
+                          <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+
+              <Link href="/admin/data-reset">
+                <div className="group bg-gradient-to-br from-card via-card/95 to-card/90 rounded-xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer border border-red-200/30 hover:border-red-400/50 relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 via-transparent to-red-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="relative">
+                    <div className="flex items-start space-x-4">
+                      <div className="w-14 h-14 bg-gradient-to-br from-red-400 to-red-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                        <Settings className="h-7 w-7 text-white" />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="font-serif text-xl font-bold text-foreground mb-2 group-hover:text-red-600 transition-colors">
+                          Data Management
+                        </h3>
+                        <p className="text-muted-foreground text-sm leading-relaxed">
+                          Reset admin dashboard data, clear collections, and manage data cleanup operations.
+                        </p>
+                        <div className="mt-4 flex items-center text-sm text-red-600 group-hover:text-red-700">
+                          <span className="font-medium">Manage Data</span>
                           <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                           </svg>
