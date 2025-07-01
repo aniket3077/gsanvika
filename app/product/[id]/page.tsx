@@ -2,7 +2,7 @@ import { notFound } from "next/navigation"
 import { Suspense } from "react"
 import Navbar from "@/components/common/navbar"
 import Footer from "@/components/common/footer"
-import ProductClient from "./product-client"
+import ProductClientNew from "./product-client-new"
 import { ProductService } from "@/lib/firebase/products"
 import { preloadFirebase } from "@/lib/firebase"
 import { Metadata } from 'next'
@@ -51,7 +51,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
         <Navbar />
       </div>
       <Suspense fallback={<div>Loading product details...</div>}>
-        <ProductClient id={id} initialData={product} />
+        <ProductClientNew id={id} initialData={product} />
       </Suspense>
       <Footer />
     </div>
