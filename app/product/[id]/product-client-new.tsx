@@ -287,10 +287,6 @@ export default function ProductClientNew({ id, initialData }: ProductClientProps
                         <Send className="mr-2 h-4 w-4" />
                         Share Product
                       </DropdownMenuItem>
-                      <DropdownMenuItem onClick={handleCopyLink} className="text-white hover:bg-gray-700">
-                        <Tag className="mr-2 h-4 w-4" />
-                        Copy Link
-                      </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
                 </div>
