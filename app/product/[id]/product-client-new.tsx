@@ -448,38 +448,54 @@ export default function ProductClientNew({ id, initialData }: ProductClientProps
               Product Information
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-              <div className="py-1">
-                <span className="text-gray-500 text-xs">Base Material: </span>
-                <span className="text-gray-300 text-xs">{(product as any).baseMaterial || product.material || 'Gold Plated'}</span>
-              </div>
-              <div className="py-1">
-                <span className="text-gray-500 text-xs">Product Color: </span>
-                <span className="text-gray-300 text-xs">{(product as any).productColor || 'Golden'}</span>
-              </div>
-              <div className="py-1">
-                <span className="text-gray-500 text-xs">Model Number: </span>
-                <span className="text-gray-300 text-xs">{(product as any).modelNumber || product.sku || 'SG-001'}</span>
-              </div>
-              <div className="py-1">
-                <span className="text-gray-500 text-xs">Occasion: </span>
-                <span className="text-gray-300 text-xs">{(product as any).occasion || 'Wedding, Party, Festival'}</span>
-              </div>
-              <div className="py-1">
-                <span className="text-gray-500 text-xs">Chain Included: </span>
-                <span className="text-gray-300 text-xs">{(product as any).chainIncluded || 'Yes'}</span>
-              </div>
-              <div className="py-1">
-                <span className="text-gray-500 text-xs">Collection: </span>
-                <span className="text-gray-300 text-xs">{(product as any).collection || 'Premium Collection'}</span>
-              </div>
-              <div className="py-1">
-                <span className="text-gray-500 text-xs">Net Quantity: </span>
-                <span className="text-gray-300 text-xs">{(product as any).netQuantity || '1 Piece'}</span>
-              </div>
-              <div className="py-1">
-                <span className="text-gray-500 text-xs">Pack of: </span>
-                <span className="text-gray-300 text-xs">{(product as any).packOf || '1'}</span>
-              </div>
+              {(product as any).baseMaterial && (
+                <div className="py-1">
+                  <span className="text-gray-500 text-xs">Base Material: </span>
+                  <span className="text-gray-300 text-xs">{(product as any).baseMaterial || product.material}</span>
+                </div>
+              )}
+              {(product as any).productColor && (
+                <div className="py-1">
+                  <span className="text-gray-500 text-xs">Product Color: </span>
+                  <span className="text-gray-300 text-xs">{(product as any).productColor}</span>
+                </div>
+              )}
+              {((product as any).modelNumber || product.sku) && (
+                <div className="py-1">
+                  <span className="text-gray-500 text-xs">Model Number: </span>
+                  <span className="text-gray-300 text-xs">{(product as any).modelNumber || product.sku}</span>
+                </div>
+              )}
+              {(product as any).occasion && (
+                <div className="py-1">
+                  <span className="text-gray-500 text-xs">Occasion: </span>
+                  <span className="text-gray-300 text-xs">{(product as any).occasion}</span>
+                </div>
+              )}
+              {(product as any).chainIncluded && (
+                <div className="py-1">
+                  <span className="text-gray-500 text-xs">Chain Included: </span>
+                  <span className="text-gray-300 text-xs">{(product as any).chainIncluded}</span>
+                </div>
+              )}
+              {(product as any).collection && (
+                <div className="py-1">
+                  <span className="text-gray-500 text-xs">Collection: </span>
+                  <span className="text-gray-300 text-xs">{(product as any).collection}</span>
+                </div>
+              )}
+              {(product as any).netQuantity && (
+                <div className="py-1">
+                  <span className="text-gray-500 text-xs">Net Quantity: </span>
+                  <span className="text-gray-300 text-xs">{(product as any).netQuantity}</span>
+                </div>
+              )}
+              {(product as any).packOf && (
+                <div className="py-1">
+                  <span className="text-gray-500 text-xs">Pack of: </span>
+                  <span className="text-gray-300 text-xs">{(product as any).packOf}</span>
+                </div>
+              )}
             </div>
           </div>
 
@@ -489,38 +505,54 @@ export default function ProductClientNew({ id, initialData }: ProductClientProps
               Product Details
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-              <div className="py-1">
-                <span className="text-gray-500 text-xs">Type: </span>
-                <span className="text-gray-300 text-xs">{(product as any).type || 'Necklace Set'}</span>
-              </div>
-              <div className="py-1">
-                <span className="text-gray-500 text-xs">Highlights: </span>
-                <span className="text-gray-300 text-xs">{(product as any).highlights || 'Elegant Design, Premium Quality'}</span>
-              </div>
-              <div className="py-1">
-                <span className="text-gray-500 text-xs">Locket Type: </span>
-                <span className="text-gray-300 text-xs">{(product as any).locketType || 'Traditional'}</span>
-              </div>
-              <div className="py-1">
-                <span className="text-gray-500 text-xs">Photo Insert: </span>
-                <span className="text-gray-300 text-xs">{(product as any).photoInsert || 'No'}</span>
-              </div>
-              <div className="py-1">
-                <span className="text-gray-500 text-xs">Clasp Type: </span>
-                <span className="text-gray-300 text-xs">{(product as any).claspType || 'Hook Clasp'}</span>
-              </div>
-              <div className="py-1">
-                <span className="text-gray-500 text-xs">Finish: </span>
-                <span className="text-gray-300 text-xs">{(product as any).finish || 'Gold Plated'}</span>
-              </div>
-              <div className="py-1">
-                <span className="text-gray-500 text-xs">Other Features: </span>
-                <span className="text-gray-300 text-xs">{(product as any).otherFeatures || 'Hypoallergenic, Tarnish Resistant'}</span>
-              </div>
-              <div className="py-1">
-                <span className="text-gray-500 text-xs">Pendant Weight: </span>
-                <span className="text-gray-300 text-xs">{(product as any).pendantWeight || product.weight || '15g'}</span>
-              </div>
+              {(product as any).type && (
+                <div className="py-1">
+                  <span className="text-gray-500 text-xs">Type: </span>
+                  <span className="text-gray-300 text-xs">{(product as any).type}</span>
+                </div>
+              )}
+              {(product as any).highlights && (
+                <div className="py-1">
+                  <span className="text-gray-500 text-xs">Highlights: </span>
+                  <span className="text-gray-300 text-xs">{(product as any).highlights}</span>
+                </div>
+              )}
+              {(product as any).locketType && (
+                <div className="py-1">
+                  <span className="text-gray-500 text-xs">Locket Type: </span>
+                  <span className="text-gray-300 text-xs">{(product as any).locketType}</span>
+                </div>
+              )}
+              {(product as any).photoInsert && (
+                <div className="py-1">
+                  <span className="text-gray-500 text-xs">Photo Insert: </span>
+                  <span className="text-gray-300 text-xs">{(product as any).photoInsert}</span>
+                </div>
+              )}
+              {(product as any).claspType && (
+                <div className="py-1">
+                  <span className="text-gray-500 text-xs">Clasp Type: </span>
+                  <span className="text-gray-300 text-xs">{(product as any).claspType}</span>
+                </div>
+              )}
+              {(product as any).finish && (
+                <div className="py-1">
+                  <span className="text-gray-500 text-xs">Finish: </span>
+                  <span className="text-gray-300 text-xs">{(product as any).finish}</span>
+                </div>
+              )}
+              {(product as any).otherFeatures && (
+                <div className="py-1">
+                  <span className="text-gray-500 text-xs">Other Features: </span>
+                  <span className="text-gray-300 text-xs">{(product as any).otherFeatures}</span>
+                </div>
+              )}
+              {((product as any).pendantWeight || product.weight) && (
+                <div className="py-1">
+                  <span className="text-gray-500 text-xs">Pendant Weight: </span>
+                  <span className="text-gray-300 text-xs">{(product as any).pendantWeight || product.weight}</span>
+                </div>
+              )}
             </div>
             {product.description && (
               <div className="mt-4 pt-4 border-t border-gray-700/30">
@@ -556,134 +588,172 @@ export default function ProductClientNew({ id, initialData }: ProductClientProps
             <div className="space-y-6 animate-in fade-in-0 slide-in-from-top-4 duration-500">
 
           {/* Chain Features */}
+          {((product as any).chainMaterial || (product as any).chainType || (product as any).chainFinish || 
+            (product as any).chainPlating || (product as any).chainLength || (product as any).chainWeight || 
+            (product as any).chainHeight || (product as any).chainThickness) && (
           <div className="py-4">
             <h2 className="text-sm text-gray-400 mb-3">
               Chain Features
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-              <div className="py-1">
-                <span className="text-gray-500 text-xs">Chain Material: </span>
-                <span className="text-gray-300 text-xs">{(product as any).chainMaterial || 'Brass'}</span>
-              </div>
-              <div className="py-1">
-                <span className="text-gray-500 text-xs">Chain Type: </span>
-                <span className="text-gray-300 text-xs">{(product as any).chainType || 'Cable Chain'}</span>
-              </div>
-              <div className="py-1">
-                <span className="text-gray-500 text-xs">Chain Finish: </span>
-                <span className="text-gray-300 text-xs">{(product as any).chainFinish || 'Gold Plated'}</span>
-              </div>
-              <div className="py-1">
-                <span className="text-gray-500 text-xs">Chain Plating: </span>
-                <span className="text-gray-300 text-xs">{(product as any).chainPlating || '18K Gold'}</span>
-              </div>
-              <div className="py-1">
-                <span className="text-gray-500 text-xs">Chain Length: </span>
-                <span className="text-gray-300 text-xs">{(product as any).chainLength || '18 inches'}</span>
-              </div>
-              <div className="py-1">
-                <span className="text-gray-500 text-xs">Chain Weight: </span>
-                <span className="text-gray-300 text-xs">{(product as any).chainWeight || '25g'}</span>
-              </div>
-              <div className="py-1">
-                <span className="text-gray-500 text-xs">Chain Height: </span>
-                <span className="text-gray-300 text-xs">{(product as any).chainHeight || '2mm'}</span>
-              </div>
-              <div className="py-1">
-                <span className="text-gray-500 text-xs">Chain Thickness: </span>
-                <span className="text-gray-300 text-xs">{(product as any).chainThickness || '1.5mm'}</span>
-              </div>
+              {(product as any).chainMaterial && (
+                <div className="py-1">
+                  <span className="text-gray-500 text-xs">Chain Material: </span>
+                  <span className="text-gray-300 text-xs">{(product as any).chainMaterial}</span>
+                </div>
+              )}
+              {(product as any).chainType && (
+                <div className="py-1">
+                  <span className="text-gray-500 text-xs">Chain Type: </span>
+                  <span className="text-gray-300 text-xs">{(product as any).chainType}</span>
+                </div>
+              )}
+              {(product as any).chainFinish && (
+                <div className="py-1">
+                  <span className="text-gray-500 text-xs">Chain Finish: </span>
+                  <span className="text-gray-300 text-xs">{(product as any).chainFinish}</span>
+                </div>
+              )}
+              {(product as any).chainPlating && (
+                <div className="py-1">
+                  <span className="text-gray-500 text-xs">Chain Plating: </span>
+                  <span className="text-gray-300 text-xs">{(product as any).chainPlating}</span>
+                </div>
+              )}
+              {(product as any).chainLength && (
+                <div className="py-1">
+                  <span className="text-gray-500 text-xs">Chain Length: </span>
+                  <span className="text-gray-300 text-xs">{(product as any).chainLength}</span>
+                </div>
+              )}
+              {(product as any).chainWeight && (
+                <div className="py-1">
+                  <span className="text-gray-500 text-xs">Chain Weight: </span>
+                  <span className="text-gray-300 text-xs">{(product as any).chainWeight}</span>
+                </div>
+              )}
+              {(product as any).chainHeight && (
+                <div className="py-1">
+                  <span className="text-gray-500 text-xs">Chain Height: </span>
+                  <span className="text-gray-300 text-xs">{(product as any).chainHeight}</span>
+                </div>
+              )}
+              {(product as any).chainThickness && (
+                <div className="py-1">
+                  <span className="text-gray-500 text-xs">Chain Thickness: </span>
+                  <span className="text-gray-300 text-xs">{(product as any).chainThickness}</span>
+                </div>
+              )}
             </div>
           </div>
+          )}
 
           {/* Earrings Details */}
+          {((product as any).earringsIncluded || (product as any).earringsDetail) && (
           <div className="py-4">
             <h2 className="text-sm text-gray-400 mb-3">
               Earrings Details
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-              <div className="py-1">
-                <span className="text-gray-500 text-xs">Earrings Included: </span>
-                <span className="text-gray-300 text-xs">{(product as any).earringsIncluded || 'Yes'}</span>
-              </div>
-              <div className="py-1">
-                <span className="text-gray-500 text-xs">Earrings Detail: </span>
-                <span className="text-gray-300 text-xs">{(product as any).earringsDetail || 'Matching Drop Earrings'}</span>
-              </div>
+              {(product as any).earringsIncluded && (
+                <div className="py-1">
+                  <span className="text-gray-500 text-xs">Earrings Included: </span>
+                  <span className="text-gray-300 text-xs">{(product as any).earringsIncluded}</span>
+                </div>
+              )}
+              {(product as any).earringsDetail && (
+                <div className="py-1">
+                  <span className="text-gray-500 text-xs">Earrings Detail: </span>
+                  <span className="text-gray-300 text-xs">{(product as any).earringsDetail}</span>
+                </div>
+              )}
             </div>
           </div>
+          )}
 
           {/* Ruby Features */}
-          <div className="py-4">
-            <h2 className="text-sm text-gray-400 mb-3">
-              Ruby Features
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-              <div className="py-1">
-                <span className="text-gray-500 text-xs">Ruby Color: </span>
-                <span className="text-gray-300 text-xs">{(product as any).rubyColor || 'Deep Red'}</span>
-              </div>
-              <div className="py-1">
-                <span className="text-gray-500 text-xs">Ruby Clarity: </span>
-                <span className="text-gray-300 text-xs">{(product as any).rubyClarity || 'VS1'}</span>
-              </div>
-              <div className="py-1">
-                <span className="text-gray-500 text-xs">Ruby Shape: </span>
-                <span className="text-gray-300 text-xs">{(product as any).rubyShape || 'Oval'}</span>
-              </div>
-              <div className="py-1">
-                <span className="text-gray-500 text-xs">Natural/Synthetic: </span>
-                <span className="text-gray-300 text-xs">{(product as any).rubyType || 'Natural'}</span>
-              </div>
-              <div className="py-1">
-                <span className="text-gray-500 text-xs">Ruby Setting: </span>
-                <span className="text-gray-300 text-xs">{(product as any).rubySetting || 'Prong Setting'}</span>
-              </div>
-              <div className="py-1">
-                <span className="text-gray-500 text-xs">Ruby Weight: </span>
-                <span className="text-gray-300 text-xs">{(product as any).rubyWeight || '2.5 Carats'}</span>
-              </div>
-              <div className="py-1">
-                <span className="text-gray-500 text-xs">Ruby Width: </span>
-                <span className="text-gray-300 text-xs">{(product as any).rubyWidth || '8mm'}</span>
+          {((product as any).rubyColor || (product as any).rubyClarity || (product as any).rubyShape || (product as any).rubyType || (product as any).rubySetting || (product as any).rubyWeight || (product as any).rubyWidth) && (
+            <div className="py-4">
+              <h2 className="text-sm text-gray-400 mb-3">
+                Ruby Features
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+                {(product as any).rubyColor && (
+                  <div className="py-1">
+                    <span className="text-gray-500 text-xs">Ruby Color: </span>
+                    <span className="text-gray-300 text-xs">{(product as any).rubyColor}</span>
+                  </div>
+                )}
+                {(product as any).rubyClarity && (
+                  <div className="py-1">
+                    <span className="text-gray-500 text-xs">Ruby Clarity: </span>
+                    <span className="text-gray-300 text-xs">{(product as any).rubyClarity}</span>
+                  </div>
+                )}
+                {(product as any).rubyShape && (
+                  <div className="py-1">
+                    <span className="text-gray-500 text-xs">Ruby Shape: </span>
+                    <span className="text-gray-300 text-xs">{(product as any).rubyShape}</span>
+                  </div>
+                )}
+                {(product as any).rubyType && (
+                  <div className="py-1">
+                    <span className="text-gray-500 text-xs">Natural/Synthetic: </span>
+                    <span className="text-gray-300 text-xs">{(product as any).rubyType}</span>
+                  </div>
+                )}
+                {(product as any).rubySetting && (
+                  <div className="py-1">
+                    <span className="text-gray-500 text-xs">Ruby Setting: </span>
+                    <span className="text-gray-300 text-xs">{(product as any).rubySetting}</span>
+                  </div>
+                )}
+                {(product as any).rubyWeight && (
+                  <div className="py-1">
+                    <span className="text-gray-500 text-xs">Ruby Weight: </span>
+                    <span className="text-gray-300 text-xs">{(product as any).rubyWeight}</span>
+                  </div>
+                )}
+                {(product as any).rubyWidth && (
+                  <div className="py-1">
+                    <span className="text-gray-500 text-xs">Ruby Width: </span>
+                    <span className="text-gray-300 text-xs">{(product as any).rubyWidth}</span>
+                  </div>
+                )}
               </div>
             </div>
-          </div>
+          )}
 
           {/* Warranty Information */}
-          <div className="py-4">
-            <h2 className="text-sm text-gray-400 mb-3">
-              Warranty Information
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <h3 className="text-xs text-gray-500 mb-2">Covered in Warranty:</h3>
-                <div className="space-y-1">
-                  {((product as any).warrantyCovered || [
-                    'Manufacturing defects',
-                    'Gold plating issues',
-                    'Stone loosening',
-                    'Clasp functionality'
-                  ]).map((item: string, index: number) => (
-                    <div key={index} className="text-xs text-gray-300">• {item}</div>
-                  ))}
-                </div>
-              </div>
-              <div>
-                <h3 className="text-xs text-gray-500 mb-2">Not Covered in Warranty:</h3>
-                <div className="space-y-1">
-                  {((product as any).warrantyNotCovered || [
-                    'Physical damage due to misuse',
-                    'Natural wear and tear',
-                    'Damage from chemicals',
-                    'Lost or stolen items'
-                  ]).map((item: string, index: number) => (
-                    <div key={index} className="text-xs text-gray-300">• {item}</div>
-                  ))}
-                </div>
+          {(((product as any).warrantyCovered && (product as any).warrantyCovered.length > 0) || ((product as any).warrantyNotCovered && (product as any).warrantyNotCovered.length > 0)) && (
+            <div className="py-4">
+              <h2 className="text-sm text-gray-400 mb-3">
+                Warranty Information
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {(product as any).warrantyCovered && (product as any).warrantyCovered.length > 0 && (
+                  <div>
+                    <h3 className="text-xs text-gray-500 mb-2">Covered in Warranty:</h3>
+                    <div className="space-y-1">
+                      {(product as any).warrantyCovered.map((item: string, index: number) => (
+                        <div key={index} className="text-xs text-gray-300">• {item}</div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                {(product as any).warrantyNotCovered && (product as any).warrantyNotCovered.length > 0 && (
+                  <div>
+                    <h3 className="text-xs text-gray-500 mb-2">Not Covered in Warranty:</h3>
+                    <div className="space-y-1">
+                      {(product as any).warrantyNotCovered.map((item: string, index: number) => (
+                        <div key={index} className="text-xs text-gray-300">• {item}</div>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
-          </div>
+          )}
             </div>
           )}
         </div>
