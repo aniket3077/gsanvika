@@ -446,6 +446,13 @@ export default function ProductClientNew({ id, initialData }: ProductClientProps
                     <span>•</span>
                     <span>🎁 Gift Wrapped</span>
                   </div>
+                  <div className="flex items-center justify-center gap-3 text-xs text-gray-500 pt-1">
+                    <span>🏷️ Professional Shipping Labels</span>
+                    <span>•</span>
+                    <span>📋 Order Tracking</span>
+                    <span>•</span>
+                    <span>🔍 Full Traceability</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -462,54 +469,42 @@ export default function ProductClientNew({ id, initialData }: ProductClientProps
               Product Information
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-              {(product as any).baseMaterial && (
-                <div className="py-1">
-                  <span className="text-gray-500 text-xs">Base Material: </span>
-                  <span className="text-gray-300 text-xs">{(product as any).baseMaterial || product.material}</span>
-                </div>
-              )}
-              {(product as any).productColor && (
-                <div className="py-1">
-                  <span className="text-gray-500 text-xs">Product Color: </span>
-                  <span className="text-gray-300 text-xs">{(product as any).productColor}</span>
-                </div>
-              )}
-              {((product as any).modelNumber || product.sku) && (
-                <div className="py-1">
-                  <span className="text-gray-500 text-xs">Model Number: </span>
-                  <span className="text-gray-300 text-xs">{(product as any).modelNumber || product.sku}</span>
-                </div>
-              )}
-              {(product as any).occasion && (
-                <div className="py-1">
-                  <span className="text-gray-500 text-xs">Occasion: </span>
-                  <span className="text-gray-300 text-xs">{(product as any).occasion}</span>
-                </div>
-              )}
-              {(product as any).chainIncluded && (
-                <div className="py-1">
-                  <span className="text-gray-500 text-xs">Chain Included: </span>
-                  <span className="text-gray-300 text-xs">{(product as any).chainIncluded}</span>
-                </div>
-              )}
-              {(product as any).collection && (
-                <div className="py-1">
-                  <span className="text-gray-500 text-xs">Collection: </span>
-                  <span className="text-gray-300 text-xs">{(product as any).collection}</span>
-                </div>
-              )}
-              {(product as any).netQuantity && (
-                <div className="py-1">
-                  <span className="text-gray-500 text-xs">Net Quantity: </span>
-                  <span className="text-gray-300 text-xs">{(product as any).netQuantity}</span>
-                </div>
-              )}
-              {(product as any).packOf && (
-                <div className="py-1">
-                  <span className="text-gray-500 text-xs">Pack of: </span>
-                  <span className="text-gray-300 text-xs">{(product as any).packOf}</span>
-                </div>
-              )}
+              <div className="py-1">
+                <span className="text-gray-500 text-xs">Base Material: </span>
+                <span className="text-gray-300 text-xs">{(product as any).baseMaterial || product.material || 'Not specified'}</span>
+              </div>
+              <div className="py-1">
+                <span className="text-gray-500 text-xs">Product Color: </span>
+                <span className="text-gray-300 text-xs">{(product as any).productColor || 'Not specified'}</span>
+              </div>
+              <div className="py-1">
+                <span className="text-gray-500 text-xs">Model Number: </span>
+                <span className="text-gray-300 text-xs">{(product as any).modelNumber || product.sku || 'Not specified'}</span>
+              </div>
+              <div className="py-1">
+                <span className="text-gray-500 text-xs">Occasion: </span>
+                <span className="text-gray-300 text-xs">{(product as any).occasion || 'Any occasion'}</span>
+              </div>
+              <div className="py-1">
+                <span className="text-gray-500 text-xs">Chain Included: </span>
+                <span className="text-gray-300 text-xs">{(product as any).chainIncluded || 'Not specified'}</span>
+              </div>
+              <div className="py-1">
+                <span className="text-gray-500 text-xs">Collection: </span>
+                <span className="text-gray-300 text-xs">{(product as any).collection || 'Standard collection'}</span>
+              </div>
+              <div className="py-1">
+                <span className="text-gray-500 text-xs">Net Quantity: </span>
+                <span className="text-gray-300 text-xs">{(product as any).netQuantity || '1 piece'}</span>
+              </div>
+              <div className="py-1">
+                <span className="text-gray-500 text-xs">Pack of: </span>
+                <span className="text-gray-300 text-xs">{(product as any).packOf || '1'}</span>
+              </div>
+              <div className="py-1">
+                <span className="text-gray-500 text-xs">Weight: </span>
+                <span className="text-gray-300 text-xs">{product.weight || 'Not specified'}</span>
+              </div>
             </div>
           </div>
 

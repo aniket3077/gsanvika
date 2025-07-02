@@ -16,6 +16,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { Search, Eye, Package, Truck, CheckCircle, Clock, AlertCircle } from "lucide-react"
 import { FirebaseOrdersService, type Order } from "@/lib/firebase/orders"
 import { format } from "date-fns"
+import { ShippingLabelGenerator } from "@/components/admin/shipping-label-generator"
 
 // Ensure proper type for button variant props
 type ButtonVariant = "default" | "destructive" | "outline" | "secondary" | "ghost" | "link";
@@ -215,6 +216,18 @@ export default function AdminOrdersPage() {
               <SelectItem value="cancelled">Cancelled</SelectItem>
             </SelectContent>
           </Select>
+          
+          {/* Batch Shipping Label Generator */}
+          {filteredOrders.filter(order => 
+            order.status === 'processing' || order.status === 'shipped' || order.status === 'delivered'
+          ).length > 0 && (
+            <ShippingLabelGenerator 
+              orders={filteredOrders.filter(order => 
+                order.status === 'processing' || order.status === 'shipped' || order.status === 'delivered'
+              )}
+              variant="batch"
+            />
+          )}
         </div>
 
         {/* Orders Table */}
@@ -315,6 +328,12 @@ export default function AdminOrdersPage() {
                           >
                             <Eye className="h-4 w-4" />
                           </Button>
+                          
+                          {/* Shipping Label Generator - only show for confirmed orders */}
+                          {(order.status === 'processing' || order.status === 'shipped' || order.status === 'delivered') && (
+                            <ShippingLabelGenerator order={order} size="sm" />
+                          )}
+                          
                           <Select
                             value={order.status || 'pending'}
                             onValueChange={(value: string) => order.id && handleStatusUpdate(order.id, value as Order['status'])}

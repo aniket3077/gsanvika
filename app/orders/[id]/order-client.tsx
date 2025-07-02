@@ -24,6 +24,7 @@ import {
   AlertCircle
 } from "lucide-react"
 import { FirebaseOrdersService, type Order } from "@/lib/firebase/orders"
+import { ShippingLabelGenerator } from "@/components/admin/shipping-label-generator"
 
 export default function OrderDetailContent() {
   const { user } = useAuth()
@@ -228,6 +229,11 @@ export default function OrderDetailContent() {
                   {paymentStatusDetails.text}
                 </span>
               </Badge>
+              
+              {/* Shipping Label Generator - only show for confirmed orders */}
+              {(order.status === 'processing' || order.status === 'shipped' || order.status === 'delivered') && (
+                <ShippingLabelGenerator order={order} size="sm" />
+              )}
             </div>
           </div>
         </div>
