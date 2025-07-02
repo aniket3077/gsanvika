@@ -25,6 +25,7 @@ import {
 } from "lucide-react"
 import { FirebaseOrdersService, type Order } from "@/lib/firebase/orders"
 import { ShippingLabelGenerator } from "@/components/admin/shipping-label-generator"
+import { CancelOrderButton } from "@/components/orders/cancel-order-button"
 
 export default function OrderDetailContent() {
   const { user } = useAuth()
@@ -39,35 +40,40 @@ export default function OrderDetailContent() {
   useEffect(() => {
     if (!user) {
       return // Will be handled by ProtectedRoute
-    }    const fetchOrder = async () => {
-      setLoading(true)
-      try {
-        const orderData = await FirebaseOrdersService.getOrder(orderId)
-        
-        if (!orderData) {
-          setError("Order not found")
-          setLoading(false)
-          return
-        }
-
-        // Check if this order belongs to the current user
-        if (orderData.customerEmail !== user.email) {
-          setError("Access denied - this order doesn't belong to you")
-          setLoading(false)
-          return
-        }
-
-        setOrder(orderData)
-      } catch (err) {
-        console.error("Error fetching order:", err)
-        setError("Failed to load order details. Please try again.")
-      } finally {
-        setLoading(false)
-      }
     }
-
     fetchOrder()
-  }, [user, orderId])
+  }, [user, orderId]) // eslint-disable-line react-hooks/exhaustive-deps
+  
+  const fetchOrder = async () => {
+    setLoading(true)
+    try {
+      const orderData = await FirebaseOrdersService.getOrder(orderId)
+      
+      if (!orderData) {
+        setError("Order not found")
+        setLoading(false)
+        return
+      }
+
+      // Check if this order belongs to the current user
+      if (orderData.customerEmail !== user?.email) {
+        setError("Access denied - this order doesn't belong to you")
+        setLoading(false)
+        return
+      }
+
+      setOrder(orderData)
+    } catch (err) {
+      console.error("Error fetching order:", err)
+      setError("Failed to load order details. Please try again.")
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleOrderUpdate = () => {
+    fetchOrder() // Refresh order data
+  }
 
   // Helper function to format currency
   const formatCurrency = (amount: number) => {
@@ -233,6 +239,15 @@ export default function OrderDetailContent() {
               {/* Shipping Label Generator - only show for confirmed orders */}
               {(order.status === 'processing' || order.status === 'shipped' || order.status === 'delivered') && (
                 <ShippingLabelGenerator order={order} size="sm" />
+              )}
+              
+              {/* Cancel Order Button - only show for cancellable orders */}
+              {(order.status === 'pending' || order.status === 'processing') && (
+                <CancelOrderButton 
+                  order={order} 
+                  onOrderCancelled={handleOrderUpdate}
+                  size="sm"
+                />
               )}
             </div>
           </div>

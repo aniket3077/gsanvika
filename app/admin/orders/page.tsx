@@ -17,6 +17,7 @@ import { Search, Eye, Package, Truck, CheckCircle, Clock, AlertCircle } from "lu
 import { FirebaseOrdersService, type Order } from "@/lib/firebase/orders"
 import { format } from "date-fns"
 import { ShippingLabelGenerator } from "@/components/admin/shipping-label-generator"
+import { QuickCancelButton } from "@/components/orders/cancel-order-button"
 
 // Ensure proper type for button variant props
 type ButtonVariant = "default" | "destructive" | "outline" | "secondary" | "ghost" | "link";
@@ -157,6 +158,11 @@ export default function AdminOrdersPage() {
     } catch (error) {
       console.error("Error updating order status:", error)
     }
+  }
+
+  const handleOrderRefresh = () => {
+    // Orders are automatically updated via real-time listener
+    // This function is mainly for callback purposes
   }
 
   if (isLoading) {
@@ -333,6 +339,12 @@ export default function AdminOrdersPage() {
                           {(order.status === 'processing' || order.status === 'shipped' || order.status === 'delivered') && (
                             <ShippingLabelGenerator order={order} size="sm" />
                           )}
+                          
+                          {/* Quick Cancel Button - only show for cancellable orders */}
+                          <QuickCancelButton 
+                            order={order} 
+                            onOrderCancelled={handleOrderRefresh}
+                          />
                           
                           <Select
                             value={order.status || 'pending'}

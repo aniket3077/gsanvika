@@ -11,6 +11,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Package, Eye, Truck, CheckCircle } from "lucide-react"
 import { FirebaseOrdersService, type Order } from "@/lib/firebase/orders"
+import { CancelOrderButton } from "@/components/orders/cancel-order-button"
 
 function OrdersContent() {
   const { user } = useAuth()
@@ -119,6 +120,15 @@ function OrdersContent() {
                           View Details
                         </Button>
                       </Link>
+                      {/* Cancel Order Button */}
+                      {(order.status === 'pending' || order.status === 'processing') && (
+                        <CancelOrderButton 
+                          order={order} 
+                          onOrderCancelled={() => window.location.reload()}
+                          variant="button"
+                          size="sm"
+                        />
+                      )}
                     </div>
                   </div>
 

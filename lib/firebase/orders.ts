@@ -268,5 +268,35 @@ export class FirebaseOrdersService {
 
     return unsubscribe
   }
+
+  // Cancel order (customer or admin)
+  static async cancelOrder(orderId: string, cancellationReason?: string): Promise<void> {
+    try {
+      const ordersCollection = await this.getCollection()
+      const docRef = doc(ordersCollection, orderId)
+      
+      // Get current order to check if it can be cancelled
+      const orderDoc = await getDoc(docRef)
+      if (!orderDoc.exists()) {
+        throw new Error('Order not found')
+      }
+      
+      const order = orderDoc.data() as Order
+      
+      // Check if order can be cancelled
+      if (!['pending', 'processing'].includes(order.status)) {
+        throw new Error(`Cannot cancel order with status: ${order.status}`)
+      }
+      
+      await updateDoc(docRef, {
+        status: 'cancelled' as Order['status'],
+        notes: cancellationReason ? `Cancelled: ${cancellationReason}` : 'Order cancelled by customer',
+        updatedAt: Timestamp.now()
+      })
+    } catch (error) {
+      console.error("Error cancelling order:", error)
+      throw error
+    }
+  }
 }
 
