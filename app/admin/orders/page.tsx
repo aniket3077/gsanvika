@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
-import { Search, Eye, Package, Truck, CheckCircle, Clock, AlertCircle } from "lucide-react"
+import { Search, Eye, Package, Truck, CheckCircle, Clock, AlertCircle, Plus } from "lucide-react"
 import { FirebaseOrdersService, type Order } from "@/lib/firebase/orders"
 import { format } from "date-fns"
 import { ShippingLabelGenerator } from "@/components/admin/shipping-label-generator"
@@ -193,9 +193,17 @@ export default function AdminOrdersPage() {
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
-        <div className="mb-8">
-          <h2 className="text-3xl font-serif font-bold text-foreground mb-2">Order Management</h2>
-          <p className="text-muted-foreground">Track and manage customer orders</p>
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+          <div>
+            <h2 className="text-3xl font-serif font-bold text-foreground mb-2">Order Management</h2>
+            <p className="text-muted-foreground">Track and manage customer orders</p>
+          </div>
+          <Button asChild className="mt-4 md:mt-0">
+            <Link href="/admin/orders/new">
+              <Plus className="mr-2 h-4 w-4" />
+              Add Order
+            </Link>
+          </Button>
         </div>
 
         {/* Filters */}
